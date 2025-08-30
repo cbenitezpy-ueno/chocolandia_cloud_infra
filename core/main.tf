@@ -9,7 +9,7 @@ resource "aws_organizations_organizational_unit" "core" {
 # Security Account
 resource "aws_organizations_account" "security" {
   name                       = "Security"
-  email                      = "chocolim@icloud.com"
+  email                      = "chocolim+security@icloud.com"
   parent_id                  = aws_organizations_organizational_unit.core.id
   close_on_deletion          = false
   create_govcloud            = false
@@ -24,7 +24,7 @@ resource "aws_organizations_account" "security" {
 # Logging Account
 resource "aws_organizations_account" "logging" {
   name                       = "Logging"
-  email                      = "chocolim@icloud.com"
+  email                      = "chocolim+logging@icloud.com"
   parent_id                  = aws_organizations_organizational_unit.core.id
   close_on_deletion          = false
   create_govcloud            = false
@@ -39,7 +39,7 @@ resource "aws_organizations_account" "logging" {
 # Shared Services Account
 resource "aws_organizations_account" "shared_services" {
   name                       = "Shared-Services"
-  email                      = "chocolim@icloud.com"
+  email                      = "chocolim+shared@icloud.com"
   parent_id                  = aws_organizations_organizational_unit.core.id
   close_on_deletion          = false
   create_govcloud            = false

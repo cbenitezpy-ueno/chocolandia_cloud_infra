@@ -9,7 +9,7 @@ resource "aws_organizations_organizational_unit" "production" {
 # BeerSystem Production Account
 resource "aws_organizations_account" "beersystem_prod" {
   name                       = "BeerSystem-Production"
-  email                      = "chocolim@icloud.com"
+  email                      = "chocolim+prod@icloud.com"
   parent_id                  = aws_organizations_organizational_unit.production.id
   close_on_deletion          = false
   create_govcloud            = false
