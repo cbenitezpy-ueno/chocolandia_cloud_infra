@@ -16,7 +16,9 @@
       "Bash(git commit:*)",
       "Bash(gh repo create:*)",
       "Bash(git push:*)",
-      "Bash(AWS_PROFILE=chocolandia terraform apply -auto-approve)"
+      "Bash(AWS_PROFILE=chocolandia terraform apply -auto-approve)",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)"
     ],
     "deny": [],
     "ask": []
