@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Página no encontrada | Beer Awards Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .error-emoji {
+            font-size: 6rem;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .error-code {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+        
+        p {
+            font-size: 1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin: 0 10px 10px 0;
+        }
+        
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .footer {
+            margin-top: 30px;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+        
+        .suggestions {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .suggestions h3 {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        
+        .suggestions ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .suggestions li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .suggestions li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-emoji">🍺💔</div>
+        <h1>Página no encontrada</h1>
+        <div class="error-code">Error 404</div>
+        <p>Lo sentimos, la página que buscas no existe o ha sido movida.</p>
+        
+        <div class="suggestions">
+            <h3>¿Qué puedes hacer?</h3>
+            <ul>
+                <li>Verificar la URL en la barra de direcciones</li>
+                <li>Ir a la página principal</li>
+                <li>Usar el menú de navegación</li>
+                <li>Contactar al administrador si crees que es un error</li>
+            </ul>
+        </div>
+        
+        <div style="margin-top: 20px;">
+            <a href="/" class="btn btn-primary">🏠 Ir al inicio</a>
+            <a href="javascript:history.back()" class="btn">⬅️ Volver</a>
+        </div>
+        
+        <div class="footer">
+            <p>${app_name}</p>
+            <p>Si el problema persiste, por favor contacta al soporte técnico</p>
+        </div>
+    </div>
+
+    <script>
+        // Auto-redirect to home after 10 seconds if user doesn't interact
+        let redirectTimer;
+        let countdown = 10;
+        
+        function updateCountdown() {
+            if (countdown > 0) {
+                document.title = `(${countdown}s) 404 - Página no encontrada | Beer Awards Platform`;
+                countdown--;
+                redirectTimer = setTimeout(updateCountdown, 1000);
+            } else {
+                window.location.href = '/';
+            }
+        }
+        
+        // Start countdown
+        setTimeout(() => {
+            updateCountdown();
+        }, 5000); // Start after 5 seconds
+        
+        // Cancel redirect if user interacts with the page
+        document.addEventListener('click', () => {
+            if (redirectTimer) {
+                clearTimeout(redirectTimer);
+                document.title = '404 - Página no encontrada | Beer Awards Platform';
+            }
+        });
+        
+        document.addEventListener('keydown', () => {
+            if (redirectTimer) {
+                clearTimeout(redirectTimer);
+                document.title = '404 - Página no encontrada | Beer Awards Platform';
+            }
+        });
+    </script>
+</body>
+</html>

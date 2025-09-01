@@ -1,0 +1,134 @@
+# Variables for Beer Awards Infrastructure Module - ULTRA SIMPLE
+# Single AZ + Local PostgreSQL for maximum cost savings
+
+variable "project_name" {
+  description = "Project name for resource naming"
+  type        = string
+  default     = "beer-awards"
+}
+
+variable "environment" {
+  description = "Environment name"
+  type        = string
+  default     = "dev"
+}
+
+variable "tags" {
+  description = "Tags to apply to all resources"
+  type        = map(string)
+  default     = {}
+}
+
+# Network Configuration - SINGLE AZ
+variable "vpc_cidr" {
+  description = "CIDR block for VPC"
+  type        = string
+  default     = "10.0.0.0/16"
+}
+
+variable "public_subnet_cidr" {
+  description = "CIDR block for public subnet (EC2 placement)"
+  type        = string
+  default     = "10.0.1.0/24"
+}
+
+variable "allowed_cidr_blocks" {
+  description = "CIDR blocks allowed to access EC2 directly"
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}
+
+variable "ssh_cidr_blocks" {
+  description = "CIDR blocks allowed SSH access to EC2"
+  type        = list(string)
+  default     = ["0.0.0.0/0"]  # Restrict this for security
+}
+
+# EC2 Configuration
+variable "backend_instance_type" {
+  description = "EC2 instance type (t3.micro for free tier)"
+  type        = string
+  default     = "t3.micro"
+}
+
+variable "ec2_key_pair_name" {
+  description = "EC2 Key Pair name for SSH access"
+  type        = string
+}
+
+variable "backend_port" {
+  description = "Port the backend listens on"
+  type        = number
+  default     = 3001
+}
+
+# Application Configuration
+variable "jwt_secret" {
+  description = "JWT secret key"
+  type        = string
+  sensitive   = true
+}
+
+variable "frontend_url" {
+  description = "Frontend URL for CORS"
+  type        = string
+  default     = ""  # Will be set to S3 website URL
+}
+
+# Local PostgreSQL Configuration
+variable "db_name" {
+  description = "PostgreSQL database name"
+  type        = string
+  default     = "beer_awards_dev"
+}
+
+variable "db_username" {
+  description = "PostgreSQL username"
+  type        = string
+  default     = "postgres"
+}
+
+variable "db_password" {
+  description = "PostgreSQL password"
+  type        = string
+  sensitive   = true
+}
+
+# Optional New Relic
+variable "new_relic_license_key" {
+  description = "New Relic license key (optional)"
+  type        = string
+  sensitive   = true
+  default     = ""
+}
+
+variable "new_relic_app_name" {
+  description = "New Relic application name"
+  type        = string
+  default     = "beer-awards-dev"
+}
+
+# Cost Control Features
+variable "enable_auto_shutdown" {
+  description = "Auto-shutdown EC2 during off hours"
+  type        = bool
+  default     = true
+}
+
+variable "shutdown_schedule" {
+  description = "When to shutdown (cron: stop at 8 PM)"
+  type        = string
+  default     = "0 20 * * *"
+}
+
+variable "startup_schedule" {
+  description = "When to start (cron: start at 8 AM)"
+  type        = string
+  default     = "0 8 * * *"
+}
+
+variable "weekend_shutdown" {
+  description = "Shutdown on weekends"
+  type        = bool
+  default     = true
+}
